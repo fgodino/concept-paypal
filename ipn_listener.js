@@ -9,9 +9,10 @@ exports.ipn_listener = function (req, res) {
 
 	ipn.verify(req.body, function (err, msg) {
 		if (err){
-			console.log(msg);
+			console.log(err, msg);
 		}
 		else{
+			console.log(req.body);
 			if(req.body.payment_status == 'Completed'){
 				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
 				 * (receiver)
