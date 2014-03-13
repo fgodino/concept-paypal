@@ -13,9 +13,9 @@ exports.ipn_listener = function (req, res) {
 		}
 		else{
 			if(req.body.payment_status == 'Completed'){
-				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
+				/* Hay que comprobar que el email pertenece a una cuenta de Paypal 
 				 * (receiver)
-				 * Hay que comprobar que el id de la transacción no esté repetido
+				 * Hay que comprobar que el id de la transacción no esté repetido 
 				 * Verificar que el artículo se corresponde con el precio indicado */
 				var notification = req.query.item;
 				addNotification(notification);
