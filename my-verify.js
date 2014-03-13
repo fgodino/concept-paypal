@@ -27,7 +27,6 @@ exports.verify = function verify(params, callback) {
     res.on('data', function paypal_response(d) {
       var response = d.toString();
 
-      //Check if IPN is valid
       callback(response != 'VERIFIED', response);
     });
   });
@@ -39,6 +38,7 @@ exports.verify = function verify(params, callback) {
 
   //Request error
   req.on('error', function request_error(e) {
+    console.log("ERRORRRR");
     callback(true, e);
   });
 };

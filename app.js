@@ -20,7 +20,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,6 +30,7 @@ if ('development' == app.get('env')) {
 }
 
 var getRawBody = function(req, res, next){
+  console.log(req.headers);
   rawBody(req, {
       limit: '1mb',
       length: req.headers['content-length'],
@@ -45,11 +45,11 @@ var getRawBody = function(req, res, next){
 var user = require('./routes/user');
 var preapproval = require('./routes/preapproval');
 
-app.get('/', express.json(),routes.index);
+app.get('/', [express.json(), express.urlencoded()],routes.index);
 
-app.get('/preapproval', express.json(), preapproval);
+app.get('/preapproval', [express.json(), express.urlencoded()], preapproval);
 
-app.post('/addItem', express.json(), user.addItem);
+app.post('/addItem', [express.json(), express.urlencoded()], user.addItem);
 
 app.post('/ipn_listener', getRawBody, ipn.ipn_listener);
 
