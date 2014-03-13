@@ -14,8 +14,7 @@ exports.ipn_listener = function (req, res) {
 			console.log(err, msg);
 		}
 		else{
-			console.log(req.body);
-			if(req.body.payment_status == 'Completed'){
+			if(req.body.status == 'COMPLETED'){
 				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
 				 * (receiver)
 				 * Hay que comprobar que el id de la transacción no esté repetido

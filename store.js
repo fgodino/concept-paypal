@@ -1,5 +1,6 @@
 
 var uuid = require('node-uuid');
+var getRawBody = require('raw-body');
 
 var items = {
   "0" : {
@@ -21,7 +22,6 @@ var purchases = {};
 exports.getItems = function(){
   return items;
 }
-
 var Purchase = function(itemId){
   var currentItem = items[itemId];
 
