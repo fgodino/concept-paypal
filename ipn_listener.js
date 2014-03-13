@@ -37,6 +37,7 @@ exports.getNotifications = function () {
 }
 
 var Notification = function(notification){
+	console.log(notification);
   var currentItem = notifications[notification.txn_id];
   this.name = notification.item_name;
   this.number = notification.item_number;

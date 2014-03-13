@@ -18,7 +18,6 @@ module.exports = function(req, res){
 
   currentItem = items[itemId];
 
-  console.log(currentItem);
   if(currentItem.single){
     return payments.pay(purchaseId, function(err, url){
       if(err){

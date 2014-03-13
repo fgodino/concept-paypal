@@ -21,8 +21,6 @@ exports.pay = pay = function(payID, callback){
   if(!purchase.single) payload.preapprovalKey = purchase.getPreKey();
   payload.receiverList.receiver[0].amount = purchase.amount;
 
-  console.log(payload.receiverList);
-
   paypalSdk.pay(payload, function(err, res){
 
     if(err){

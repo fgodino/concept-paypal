@@ -4,8 +4,6 @@ exports.addItem = function(req, res){
 
   var body = req.body;
 
-  console.log(req);
-
   var newItem = {
     name : body.name,
     single : (body.numberPayments > 1) ? false : true,
