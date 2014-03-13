@@ -37,7 +37,7 @@ var getRawBody = function(req, res, next){
       encoding: 'utf8'
     },
     function(err, buf){
-    req.body = buf.toString();
+    req.body = buf;
     next();
   });
 }
