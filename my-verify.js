@@ -10,14 +10,13 @@ exports.verify = function verify(params, callback) {
     return callback(true, 'No params were passed to ipn.verify');
   }
 
-  params.cmd = '_notify-validate';
 
   var body = params;
-  params = params + "&cmd=_notify-validate";
+  body = body + "&cmd=_notify-validate";
 
   //Set up the request to paypal
   var req_options = {
-    host: (params.test_ipn) ? SANDBOX_URL : REGULAR_URL,
+    host: SANDBOX_URL,
     method: 'POST',
     path: '/cgi-bin/webscr',
     headers: {'Content-Length': body.length}
