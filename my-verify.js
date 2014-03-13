@@ -13,6 +13,7 @@ exports.verify = function verify(params, callback) {
   params.cmd = '_notify-validate';
 
   var body = params;
+  params = params + "&cmd=_notify-validate";
 
   //Set up the request to paypal
   var req_options = {
