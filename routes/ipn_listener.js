@@ -7,15 +7,18 @@ var notifications = {};
 exports.ipn_listener = function (req, res) {
 	res.send(200);
 
+	console.log(req.body);
+
 	ipn.verify(req.body, function (err, msg) {
 		if (err){
-			console.log(msg);
+			console.log(err, msg);
 		}
 		else{
+			console.log(req.body);
 			if(req.body.payment_status == 'Completed'){
-				/* Hay que comprobar que el email pertenece a una cuenta de Paypal 
+				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
 				 * (receiver)
-				 * Hay que comprobar que el id de la transacción no esté repetido 
+				 * Hay que comprobar que el id de la transacción no esté repetido
 				 * Verificar que el artículo se corresponde con el precio indicado */
 				var notification = req.query.item;
 				addNotification(notification);
@@ -37,6 +40,7 @@ exports.getNotifications = function () {
 }
 
 var Notification = function(notification){
+	console.log(notification);
   var currentItem = notifications[notification.txn_id];
   this.name = notification.item_name;
   this.number = notification.item_number;
