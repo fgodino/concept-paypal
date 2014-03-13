@@ -7,6 +7,8 @@ var notifications = {};
 exports.ipn_listener = function (req, res) {
 	res.send(200);
 
+	console.log(req.body);
+
 	ipn.verify(req.body, function (err, msg) {
 		if (err){
 			console.log(err, msg);
