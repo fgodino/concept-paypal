@@ -1,5 +1,5 @@
 
-var ipn = require("paypal-ipn");
+var ipn = require("../my-verify.js");
 var store = require("../store");
 
 var notifications = {};
