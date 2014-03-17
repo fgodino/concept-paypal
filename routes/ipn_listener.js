@@ -27,6 +27,8 @@ exports.ipn_listener = function (req, res) {
 			}
 
 			parsedBody = qs.parse(replaced);
+
+			console.log(parsedBody);
 			if(req.body.status == 'COMPLETED'){
 				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
 				 * (receiver)
