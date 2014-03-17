@@ -2,6 +2,7 @@
 var ipn = require("../my-verify.js");
 var store = require("../store");
 var qs = require('qs');
+var utils = require('../utils');
 
 var notifications = {};
 
@@ -15,19 +16,7 @@ exports.ipn_listener = function (req, res) {
 			console.log(err, msg);
 		}
 		else{
-			var text = decodeURIComponent(req.body);
-			var patt1 = /\]\.[\w,\d]+\=/g;
-			var result = text.match(patt1);
-			var replaced = text;
-
-			for(var i = 0; i < result.length; i++){
-				var cad = result[i];
-				var toReplace = "][" + cad.substring(2,cad.length-1) + "]=";
-				var replaced = replaced.replace(cad, toReplace);
-			}
-
-			parsedBody = qs.parse(replaced);
-
+			parsedBody = qs.parse(utils.replace(req.body));
 			console.log(parsedBody);
 			if(req.body.status == 'COMPLETED'){
 				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
