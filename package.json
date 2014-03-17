@@ -12,6 +12,7 @@
     "paypal-ipn": "1.0.1",
     "paypal-adaptive" : "0.4.1",
     "node-uuid" : "1.4.1",
-    "raw-body" : "1.1.3"
+    "raw-body" : "1.1.3",
+    "qs" : "0.6.6"
   }
 }
