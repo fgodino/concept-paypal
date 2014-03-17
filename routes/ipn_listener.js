@@ -3,6 +3,8 @@ var ipn = require("../my-verify.js");
 var store = require("../store");
 var qs = require('qs');
 var utils = require('../utils');
+var ipn_preapproval = require('./ipn_listener_preapproval');
+var ipn_pay = require('./ipn_listener_pay');
 
 var notifications = {};
 
@@ -23,6 +25,12 @@ exports.ipn_listener = function (req, res) {
 				 * (receiver)
 				 * Hay que comprobar que el id de la transacción no esté repetido
 				 * Verificar que el artículo se corresponde con el precio indicado */
+				 if(req.body.preapprovalKey){
+				 	ipn_preapproval.ipn_listener_preapproval();
+				 }
+				 if(req.body.payKey) {
+				 	ipn_pay.ipn_listener_pay();
+				 }
 				 var notification = req.query.item;
 				 addNotification(notification);
 				}
