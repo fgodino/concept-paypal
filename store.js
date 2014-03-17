@@ -41,10 +41,12 @@ var Purchase = function(itemId){
     }
   }
 
-}
-exports.addItem = function(item){
-   var id = uuid.v4();
+  this.doPay = function(){
+    this.paymentsLeft--;
+  }
 
+}
+exports.addItem = function(id, item){
    items[id] = item;
 }
 

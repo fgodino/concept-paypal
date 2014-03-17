@@ -26,7 +26,6 @@ exports.pay = pay = function(payID, callback){
     if(err){
       callback(err);
     }
-    purchase.paymentsLeft--;
     if(res.paymentApprovalUrl){
       return callback(null, res.paymentApprovalUrl);
     } else {
