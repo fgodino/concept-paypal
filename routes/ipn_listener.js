@@ -33,28 +33,7 @@ exports.ipn_listener = function (req, res) {
 				 if(parsedBody.payKey) {
 				 	ipn_pay.ipn_listener_pay(parsedBody.preapprovalKey);
 				 }
-				 var notification = req.query.item;
-				 addNotification(notification);
 				}
 			}
 		});
-}
-
-exports.addNotification = function (notification) {
-	notifications[notification.txn_id] = new Notification(notification);
-}
-
-exports.getNotification = function (notification) {
-	return notifications[notification.txn_id];
-}
-
-exports.getNotifications = function () {
-	return notifications;
-}
-
-var Notification = function(notification){
-	console.log(notification);
-	var currentItem = notifications[notification.txn_id];
-	this.name = notification.item_name;
-	this.number = notification.item_number;
 }
