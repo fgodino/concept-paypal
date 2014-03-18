@@ -10,4 +10,6 @@ exports.replace = function(body){
 		var toReplace = "][" + cad.substring(2,cad.length-1) + "]=";
 		var replaced = replaced.replace(cad, toReplace);
 	}
+
+  return replaced;
 }
