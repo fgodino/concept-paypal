@@ -47,7 +47,7 @@ var Purchase = function(itemId){
   }
 
 }
-exports.addItem = function(id, item){
+exports.addItem = function(item){
 
    var id = uuid.v4();
    items[id] = item;
