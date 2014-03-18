@@ -30,7 +30,6 @@ if ('development' == app.get('env')) {
 }
 
 var getRawBody = function(req, res, next){
-  console.log(req.headers);
   rawBody(req, {
       limit: '1mb',
       length: req.headers['content-length'],

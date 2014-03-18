@@ -18,9 +18,10 @@ exports.ipn_listener = function (req, res) {
 			console.log(err, msg);
 		}
 		else{
+			console.log("sin parsear--------------------",  req.body);
 			parsedBody = qs.parse(utils.replace(req.body));
 
-			console.log(parsedBody);
+			console.log("parseado--------------------", parsedBody);
 			if(parsedBody.status == 'COMPLETED'){
 				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
 				 * (receiver)
