@@ -22,7 +22,7 @@ module.exports = function(req, res){
         return res.send(400);
       }
       else{
-        store.addPurchase(result.payKey);
+        store.addPurchase(result.payKey, itemId);
         return res.redirect(result.paymentApprovalUrl);
       }
     });
@@ -32,7 +32,7 @@ module.exports = function(req, res){
     if (err) {
       return res.send(500, err);
     } else {
-      store.addPurchase(response.preapprovalKey);
+      store.addPurchase(response.preapprovalKey, itemId);
       return res.redirect(response.preapprovalUrl);
     }
   });
