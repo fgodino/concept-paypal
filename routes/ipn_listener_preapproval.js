@@ -1,8 +1,8 @@
 var store = require('../store');
 var payments = require('../payments')
 
-module.export = function (key){
-	purchase = store.getPurchase(key);
+exports.ipn_listener_preapproval = function (key){
+	var purchase = store.getPurchase(key);
 
   payments.pay(purchase.itemId, function(){}, key);
 }
