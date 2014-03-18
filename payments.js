@@ -14,23 +14,22 @@ var payload = config.getPayload({
   }
 });
 
-exports.pay = pay = function(payID, callback){
+exports.pay = pay = function(itemId, callback, preKey){
 
-  var purchase = store.getPurchase(payID);
+  var item = store.getItem(itemId);
 
-  if(!purchase.single) payload.preapprovalKey = purchase.getPreKey();
-  payload.receiverList.receiver[0].amount = purchase.amount;
+  if(preKey){
+    payload.preapprovalKey = preKey;
+  }
+
+  payload.receiverList.receiver[0].amount = item.amountPerPayment;
 
   paypalSdk.pay(payload, function(err, res){
 
     if(err){
       callback(err);
     }
-    if(res.paymentApprovalUrl){
-      return callback(null, res.paymentApprovalUrl);
-    } else {
-      return callback(null);
-    }
+    return callback(null, res);
   });
 
 };

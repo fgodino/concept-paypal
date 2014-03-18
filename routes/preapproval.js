@@ -14,17 +14,16 @@ var payload = config.getPayload({
 module.exports = function(req, res){
   var itemId = req.query.item;
 
-  var purchaseId = store.addPurchase(itemId);
-
   currentItem = items[itemId];
 
   if(currentItem.single){
-    return payments.pay(purchaseId, function(err, url){
+    return payments.pay(itemId, function(err, result){
       if(err){
         return res.send(400);
       }
       else{
-        return res.redirect(url);
+        store.addPurchase(result.payKey);
+        return res.redirect(result.paymentApprovalUrl);
       }
     });
   }
@@ -33,7 +32,7 @@ module.exports = function(req, res){
     if (err) {
       return res.send(500, err);
     } else {
-      store.getPurchase(purchaseId).setPreKey(response.preapprovalKey);
+      store.addPurchase(response.preapprovalKey);
       return res.redirect(response.preapprovalUrl);
     }
   });

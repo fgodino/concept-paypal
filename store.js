@@ -25,6 +25,7 @@ exports.getItems = function(){
 var Purchase = function(itemId){
   var currentItem = items[itemId];
 
+  this.itemId = itemId;
   this.item = currentItem;
   this.single = true;
   this.amount = currentItem.amountPerPayment;
@@ -47,12 +48,12 @@ var Purchase = function(itemId){
 
 }
 exports.addItem = function(id, item){
+
+   var id = uuid.v4();
    items[id] = item;
 }
 
-exports.addPurchase = function(itemId){
-
-  var id = uuid.v4();
+exports.addPurchase = function(id, itemId){
 
   purchases[id] = new Purchase(itemId);
 
