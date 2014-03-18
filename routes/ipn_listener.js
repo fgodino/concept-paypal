@@ -22,18 +22,16 @@ exports.ipn_listener = function (req, res) {
 			parsedBody = qs.parse(utils.replace(req.body));
 
 			console.log("parseado--------------------", parsedBody);
-			if(parsedBody.status == 'COMPLETED'){
-				/* Hay que comprobar que el email pertenece a una cuenta de Paypal
-				 * (receiver)
-				 * Hay que comprobar que el id de la transacción no esté repetido
-				 * Verificar que el artículo se corresponde con el precio indicado */
-				 if(parsedBody["preapproval_key"]){
-				 	ipn_preapproval.ipn_listener_preapproval(parsedBody["preapproval_key"]);
-				 }
-				 if(parsedBody["pay_key"]) {
-				 	ipn_pay.ipn_listener_pay(parsedBody["pay_key"]);
-				 }
-				}
+			/* Hay que comprobar que el email pertenece a una cuenta de Paypal
+			 * (receiver)
+			 * Hay que comprobar que el id de la transacción no esté repetido
+			 * Verificar que el artículo se corresponde con el precio indicado */
+			 if(parsedBody["preapproval_key"]){
+			 	ipn_preapproval.ipn_listener_preapproval(parsedBody["preapproval_key"]);
+			 }
+			 if(parsedBody["pay_key"]) {
+			 	ipn_pay.ipn_listener_pay(parsedBody["pay_key"]);
+			 }
 			}
 		});
 }
