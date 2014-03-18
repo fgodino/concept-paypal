@@ -53,6 +53,11 @@ exports.addItem = function(item){
    items[id] = item;
 }
 
+exports.getItem = function(id){
+
+   return items[id];
+};
+
 exports.addPurchase = function(id, itemId){
 
   purchases[id] = new Purchase(itemId);
