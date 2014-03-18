@@ -30,8 +30,8 @@ exports.ipn_listener = function (req, res) {
 				 if(parsedBody.preapprovalKey){
 				 	ipn_preapproval.ipn_listener_preapproval(parsedBody.preapprovalKey);
 				 }
-				 if(parsedBody.payKey) {
-				 	ipn_pay.ipn_listener_pay(parsedBody.preapprovalKey);
+				 if(parsedBody["pay_key"]) {
+				 	ipn_pay.ipn_listener_pay(parsedBody["pay_key"]);
 				 }
 				}
 			}
