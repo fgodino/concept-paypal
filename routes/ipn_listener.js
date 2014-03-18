@@ -27,7 +27,7 @@ exports.ipn_listener = function (req, res) {
 			 * Hay que comprobar que el id de la transacción no esté repetido
 			 * Verificar que el artículo se corresponde con el precio indicado */
 			 if(parsedBody["preapproval_key"]){
-			 	ipn_preapproval.ipn_listener_preapproval(parsedBody["preapproval_key"]);
+			 	ipn_preapproval(parsedBody["preapproval_key"]);
 			 }
 			 if(parsedBody["pay_key"]) {
 			 	ipn_pay.ipn_listener_pay(parsedBody["pay_key"]);
